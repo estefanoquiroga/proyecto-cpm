@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.22/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.22/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.22/css/jquery.dataTables.min.css' %}"/>
+    <link rel="" href={% static 'lib/datatables-1.10.22/css/fixedHeader.dataTables.min.css'%}/>
+    <script src="{% static 'lib/datatables-1.10.22/js/jquery-3.5.1.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.22/js/jquery.dataTables.min.js'%}"></script>
+    <script src="{% static 'lib/datatables-1.10.22/js/dataTables.bootstrap4.min.js'%}"></script>
+    <script src="{% static 'lib/datatables-1.10.22/js/dataTables.fixedHeader.min.js'%}"></script>
+    <script src="{% static 'lib/Buttons-1.6.5/js/dataTables.buttons.min.js'%}"></script>
+    <script src="{% static 'lib/Buttons-1.6.5/js/buttons.flash.min.js'%}"></script>
+    <script src="{% static 'lib/JSZip-2.5.0/jszip.min.js'%}"></script>
+    <script src="{% static 'lib/Buttons-1.6.5/js/buttons.html5.min.js'%}"></script>
+
+<style>
+    thead input {
+        width: 100%;
+    }
+th {
+  font-size: 11px;
+    width: 10px;
+}
+
+    td {
+  font-size: 10px;
+        font-weight: bold;
+        width: 10px;
+}
+
+    </style>
+
+<title>Cumplimiento MP </title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row justify-content-md-center">
+          <div class="col-md-11">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-tasks"></i>
+                  Calendario Mantenciones Preventivas vs Realidad
+                </h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+    <table id="listado" class="table table-sm table-hover" style="width:100%">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID MANTENCIÓN</th>
+                <th scope="col">SERVICIO CLÍNICO</th>
+                <th scope="col">DESCRIPCIÓN</th>
+                <th scope="col">MODELO</th>
+                <th scope="col">N° SERIE</th>
+                <th scope="col">CATEGORIZACIÓN</th>
+                <th scope="col">FRECUENCIA ANUAL</th>
+                <th scope="col">FECHA PROGRAMADA</th>
+                <th scope="col">ESTADO</th>
+                <th scope="col">PROVEEDOR ADJUDICADO</th>
+                <th scope="col">FECHA REALIZACIÓN MP</th>
+                <th scope="col">OT MP</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for cmr in cumplimientomp %}
+                <tr>
+                    <td height="35">{{ cmr.id }}</td>
+                    <td height="35">{{ cmr.numero_serie_equipo.serv_clinico_equipo }}</td>
+                    <td height="35">{{ cmr.numero_serie_equipo.nombre_equipo}}</td>
+                    <td height="35">{{ cmr.numero_serie_equipo.modelo_equipo}}</td>
+                    <td height="35">{{ cmr.numero_serie_equipo.numero_serie}}</td>
+                    <td height="35">{{ cmr.numero_serie_equipo.categoria_equipo}}</td>
+                    <td height="35">{{ cmr.numero_serie_equipo.frecuencia_mantencion}}</td>
+                    <td height="35">{{ cmr.fecha_programada}}</td>
+                    <td height="35">{{ cmr.estado_mp}}</td>
+                    <td height="35">{{ cmr.proveedor_mantencion_programada}}</td>
+                    <td height="35">{{ cmr.mantencionespreventivasrealizadas.fecha_mp}}</td>
+                    <td height="35">{{ cmr.mantencionespreventivasrealizadas.orden_trabajo_mp }}</td>
+
+
+                </tr>
+
+
+
+        {% endfor %}
+ </tbody>
+    </table>
+
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          </div>
+
+
+    </div>
+
+    {% endblock %}
+
+{% block javascript %}
+    <script type="application/javascript">
+
+$(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    $('#listado thead tr').clone(true).appendTo( '#listado thead' );
+    $('#listado thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
+    var table = $('#listado').DataTable( {
+        orderCellsTop: true,
+        fixedHeader: true,
+        autoWidth: false,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel"></i>',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success'
+            }
+        ],
+        "scrollCollapse": true,
+        "paging":         false,
+
+    } );
+} );
+
+</script>
+
+{% endblock %}

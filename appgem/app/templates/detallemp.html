@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+
+<title>Detalle MP </title>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+  <div class="col-sm-6">
+    <div class="card border-primary ">
+      <div class="card-header bg-success mb-3">
+          <h3 class="card-title">
+          <i class="fas fa-clipboard-list"></i>  Detalle Mantención Preventiva Realizada
+              </h3>
+      </div>
+
+
+  <div class="card-body">
+      <ul class="list-group">
+      <li class="list-group-item"><b>Orden de Trabajo:</b>  {{object.orden_trabajo_mp}}</li>
+      <li class="list-group-item"><b>Fecha Realización:</b>   {{ object.fecha_mp }}</li>
+          <li class="list-group-item"><b>Fecha Programada:</b>   {{ object.id_mantencion_programada.fecha_programada }}</li>
+      <li class="list-group-item"><b>Orden de Trabajo Digital:</b><a href="{{ object.copia_digital_mp_url | default_if_none:'#'}}">   {{ object.copia_digital_mp }}</a></li>
+      <li class="list-group-item"><b>Proveedor Realización MP:</b>   {{ object.proveedor_mp }}</li>
+      <li class="list-group-item"><b>Equipo:</b>   {{ object.id_mantencion_programada.numero_serie_equipo.nombre_equipo }}</li>
+          <li class="list-group-item"><b>Modelo:</b>   {{ object.id_mantencion_programada.numero_serie_equipo.modelo_equipo }}</li>
+          <li class="list-group-item"><b>Serie:</b>   {{ object.id_mantencion_programada.numero_serie_equipo.numero_serie }}</li>
+          <li class="list-group-item"><b>Categoría:</b>   {{ object.id_mantencion_programada.numero_serie_equipo.categoria_equipo }}</li>
+          <li class="list-group-item"><b>Servicio Clínico:</b>   {{ object.id_mantencion_programada.numero_serie_equipo.serv_clinico_equipo }}</li>
+          <li class="list-group-item"><b>Carta de Reprogramación:</b><a href="{{ object.carta_reprogramacion_url | default_if_none:'#'}}">   {{ object.carta_reprogramacion }}</a></li>
+          <li class="list-group-item"><b>Carta de Retiro del Servicio:</b><a href="{{ object.carta_retiro_url | default_if_none:'#'}}">   {{ object.carta_retiro }}</a></li>
+           <li class="list-group-item"><b>Observaciones:</b>   {{ object.observaciones_mp }}</li>
+</ul>
+
+      <footer class="blockquote-footer"><p align="right"><a class="btn btn-primary" href="{% url 'cumplimientomp_list' %}" role="button"><i class="fas fa-chevron-circle-left"></i> Volver al listado</a></p></footer>
+  </div>
+</div>
+        </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% load static %}
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand-md navbar-dark navbar-blue">
+    <div class="container">
+      <a href="{% url 'index' %}" class="navbar-brand">
+        <img src="{% static 'lib/adminlte-3.0.5/img/logo-clinica-puertomontt.png' %}" alt="AdminLTE Logo"
+             class="brand-image img-rounded elevation-3" >
+      </a>
+
+      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="{% url 'index' %}" class="nav-link">Home</a>
+          </li>
+
+           <!-- ITEMS DESPLEGABLES-->
+          <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fas fa-stethoscope"></i> Equipos médicos</a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+              <li><a href="{% url 'equiposmedicos_list' %}" class="dropdown-item">Listado de Equipos Médicos </a></li>
+            </ul>
+          </li>
+            <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fas fa-tools"></i> Mantenciones</a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
+
+
+              <!-- Level two dropdown-->
+              <li class="dropdown-submenu dropdown-hover">
+                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Preventivas</a>
+                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                  <li>
+                    <a tabindex="-1" href="{% url 'mantencionesprogramadas_list' %}" class="dropdown-item">Calendario Mantenciones</a></li>
+                    <li><a href="{% url 'mprealizadas_list' %}" class="dropdown-item">Historial Mantenciones Preventivas</a></li>
+                  <li><a href="{% url 'cumplimientomp_list' %}" class="dropdown-item">Cumplimiento MP</a></li>
+                </ul>
+              </li>
+
+                <li class="dropdown-submenu dropdown-hover">
+                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Correctivas</a>
+                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                  <li>
+                    <a tabindex="-1" href="{% url 'mantencionescorrectivas_list' %}" class="dropdown-item">Historial Mantenciones Correctivas</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- End Level two -->
+            </ul>
+          </li>
+          </li>
+            <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fas fa-users"></i> Proveedores</a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+              <li><a href="{% url 'proveedores_list' %}" class="dropdown-item">Listado Proveedores </a></li>
+            </ul>
+          </li>
+            <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fas fa-hospital-user"></i> Servicios clínicos</a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+              <li><a href="{% url 'serviciosclinicos_list' %}" class="dropdown-item">Listado Unidades </a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- Right navbar links -->
+      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
+              class="fas fa-power-off"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- /.navbar -->

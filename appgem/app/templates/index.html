@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+    <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+<title>Home</title>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+  <div class="col-sm-4">
+    <div class="card " >
+        <img class="card-img-top" src="{% static 'img/equipomedico.jpg' %}" alt="Card image cap">
+      <div class="card-body">
+        <h1 class="card-title">Equipos Médicos</h1>
+        <p class="card-text"> </p>
+        <a href="{% url 'equiposmedicos_list' %}" class="btn btn-primary"><i class="fas fa-arrow-alt-circle-right"></i> Ir</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+        <img class="card-img-top" src="{% static 'img/calendario.jpg'%}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Calendario de mantenciones</h5>
+        <p class="card-text"> </p>
+        <a href="{% url 'mantencionesprogramadas_list' %}" class="btn btn-primary"><i class="fas fa-arrow-alt-circle-right"></i> Ir</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="row justify-content-md-center">
+  <div class="col-sm-4">
+    <div class="card">
+        <img class="card-img-top" src="{% static 'img/tecnicos.jpg'%}" alt="Card image cap">
+      <div class="card-body">
+        <h1 class="card-title">Proveedores</h1>
+        <p class="card-text"> </p>
+        <a href="{% url 'proveedores_list' %} " class="btn btn-primary"><i class="fas fa-arrow-alt-circle-right"></i> Ir</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+        <img class="card-img-top" src="{% static 'img/clinica.jpg'%}" alt="Card image cap">
+      <div class="card-body">
+        <h1 class="card-title">Servicios clínicos</h1>
+        <p class="card-text"> </p>
+        <a href="{% url 'serviciosclinicos_list' %} " class="btn btn-primary"><i class="fas fa-arrow-alt-circle-right"></i> Ir</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
